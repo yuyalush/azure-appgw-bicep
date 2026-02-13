@@ -1,0 +1,29 @@
+# Bicep build artifacts
+*.json
+
+# パラメータファイル (機密情報が含まれる可能性があるため)
+# main.bicepparam をコミットする場合は、SSH キーなどの機密情報を削除してください
+# main.bicepparam
+
+# SSH キー
+*.pem
+*.key
+*_rsa
+*_rsa.pub
+
+# Azure CLI ログ
+.azure/
+
+# デプロイ出力
+deployment-outputs.json
+
+# エディタ設定
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS ファイル
+.DS_Store
+Thumbs.db

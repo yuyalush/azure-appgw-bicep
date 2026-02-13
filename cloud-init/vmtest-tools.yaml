@@ -1,0 +1,149 @@
+#cloud-config
+# Test VM 用 cloud-init
+# curl、wget、jq などのテストツールをインストール
+
+package_update: true
+package_upgrade: true
+
+packages:
+  - curl
+  - wget
+  - jq
+  - net-tools
+  - dnsutils
+  - iputils-ping
+  - traceroute
+  - tcpdump
+  - nmap
+  - vim
+  - git
+
+runcmd:
+  # テストスクリプトを作成
+  - |
+    cat > /home/azureuser/test-appgw.sh <<'EOF'
+    #!/bin/bash
+    # Application Gateway テストスクリプト
+    
+    if [ -z "$1" ]; then
+        echo "Usage: $0 <AppGW-Public-IP>"
+        exit 1
+    fi
+    
+    APPGW_IP="$1"
+    echo "=========================================="
+    echo "Application Gateway Test Script"
+    echo "Target: http://$APPGW_IP"
+    echo "=========================================="
+    echo ""
+    
+    # 基本的な接続テスト
+    echo "1. Basic connectivity test..."
+    curl -v http://$APPGW_IP
+    echo ""
+    
+    # 複数回リクエストして応答を確認
+    echo "2. Multiple requests test (10 times)..."
+    for i in {1..10}; do
+        echo "Request $i:"
+        curl -s http://$APPGW_IP | grep -o "<h1>.*</h1>" || echo "No response"
+        sleep 1
+    done
+    echo ""
+    
+    # ヘッダー情報の確認
+    echo "3. Response headers..."
+    curl -I http://$APPGW_IP
+    echo ""
+    
+    # レスポンスタイムの測定
+    echo "4. Response time measurement..."
+    for i in {1..5}; do
+        echo "Request $i:"
+        curl -o /dev/null -s -w "Time: %{time_total}s | HTTP Code: %{http_code}\n" http://$APPGW_IP
+    done
+    
+    echo ""
+    echo "=========================================="
+    echo "Test completed!"
+    echo "=========================================="
+    EOF
+  
+  - chmod +x /home/azureuser/test-appgw.sh
+  - chown azureuser:azureuser /home/azureuser/test-appgw.sh
+  
+  # Backend VM への SSH 接続スクリプトを作成
+  - |
+    cat > /home/azureuser/connect-vm1.sh <<'EOF'
+    #!/bin/bash
+    # Backend VM1 への SSH 接続スクリプト
+    
+    VM1_IP="10.1.1.4"
+    SSH_KEY="$HOME/.ssh/vm-ssh-key"
+    
+    if [ ! -f "$SSH_KEY" ]; then
+        echo "Error: SSH key not found at $SSH_KEY"
+        echo "Please ensure the SSH private key is deployed."
+        exit 1
+    fi
+    
+    echo "Connecting to Backend VM1 at $VM1_IP..."
+    ssh -i "$SSH_KEY" -o StrictHostKeyChecking=no azureuser@$VM1_IP
+    EOF
+  
+  - chmod +x /home/azureuser/connect-vm1.sh
+  - chown azureuser:azureuser /home/azureuser/connect-vm1.sh
+  
+  # README ファイルを作成
+  - |
+    cat > /home/azureuser/README.md <<'EOF'
+    # Test VM - Quick Start Guide
+    
+    ## Available Test Scripts
+    
+    ### 1. Application Gateway Test
+    ```bash
+    ./test-appgw.sh <AppGW-Public-IP>
+    ```
+    
+    ### 2. Connect to Backend VM1
+    ```bash
+    ./connect-vm1.sh
+    # or directly:
+    ssh -i ~/.ssh/vm-ssh-key azureuser@10.1.1.4
+    ```
+    
+    ## Manual Testing
+    
+    ### Basic curl test
+    ```bash
+    curl http://<AppGW-Public-IP>
+    ```
+    
+    ### Multiple requests
+    ```bash
+    for i in {1..10}; do curl -s http://<AppGW-Public-IP> | grep h1; sleep 1; done
+    ```
+    
+    ### Check connectivity to Backend VM1
+    ```bash
+    ping 10.1.1.4
+    nc -zv 10.1.1.4 22
+    nc -zv 10.1.1.4 80
+    ```
+    
+    ## Installed Tools
+    - curl, wget, jq
+    - net-tools, dnsutils
+    - ping, traceroute, tcpdump, nmap
+    - vim, git
+    
+    EOF
+  
+  - chown azureuser:azureuser /home/azureuser/README.md
+  
+  # セットアップ完了のマーカーファイルを作成
+  - echo "Test VM setup completed at $(date)" > /home/azureuser/setup-complete.txt
+  - chown azureuser:azureuser /home/azureuser/setup-complete.txt
+
+final_message: "Test VM cloud-init setup completed! Check ~/README.md for usage instructions."

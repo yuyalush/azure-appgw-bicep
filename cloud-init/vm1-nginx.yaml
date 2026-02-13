@@ -1,0 +1,75 @@
+#cloud-config
+# Backend VM1 用 cloud-init
+# nginx をインストールし、簡単な HTML ページを配置
+
+package_update: true
+package_upgrade: true
+
+packages:
+  - nginx
+  - curl
+  - net-tools
+
+runcmd:
+  # nginx を起動
+  - systemctl start nginx
+  - systemctl enable nginx
+  
+  # カスタム HTML ページを作成
+  - |
+    cat > /var/www/html/index.html <<EOF
+    <!DOCTYPE html>
+    <html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Backend VM1</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 50px;
+                background-color: #f0f0f0;
+            }
+            .container {
+                background-color: white;
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+            h1 { color: #0078d4; }
+            .info { margin: 20px 0; }
+            .label { font-weight: bold; color: #333; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>🚀 Backend VM1 - Azure Application Gateway Demo</h1>
+            <div class="info">
+                <p class="label">Hostname:</p>
+                <p>$(hostname)</p>
+            </div>
+            <div class="info">
+                <p class="label">Private IP:</p>
+                <p>$(hostname -I | awk '{print $1}')</p>
+            </div>
+            <div class="info">
+                <p class="label">Timestamp:</p>
+                <p>$(date)</p>
+            </div>
+            <div class="info">
+                <p>✅ nginx is running successfully!</p>
+                <p>🌐 Traffic routed via Application Gateway</p>
+            </div>
+        </div>
+    </body>
+    </html>
+    EOF
+  
+  # nginx を再起動して変更を反映
+  - systemctl restart nginx
+  
+  # セットアップ完了のマーカーファイルを作成
+  - echo "VM1 setup completed at $(date)" > /home/azureuser/setup-complete.txt
+  - chown azureuser:azureuser /home/azureuser/setup-complete.txt
+
+final_message: "Backend VM1 cloud-init setup completed!"
