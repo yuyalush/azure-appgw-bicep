@@ -44,10 +44,11 @@ param adminUsername = 'azureuser'
 //   cat ~/.ssh/vm-ssh-key.pub
 param sshPublicKey = 'PASTE_YOUR_SSH_PUBLIC_KEY_HERE'
 
-// SSH 秘密鍵 (Test VM 用、オプション)
-// 注意: セキュリティ上、秘密鍵をパラメータファイルに直接記載するのは推奨されません
-// Azure Key Vault を使用するか、デプロイ時に --parameters sshPrivateKey=@~/.ssh/vm-ssh-key で指定してください
-// 空文字列のままにすると、秘密鍵は配置されません (後で手動で SCP などで転送可能)
+// SSH 秘密鍵 (Test VM 用、推奨)
+// 設定すると Custom Script Extension により Test VM の
+// /home/azureuser/.ssh/vm-ssh-key に自動配置されます (パーミッション: 600)
+// これにより connect-vm1.sh スクリプトで VM1 への SSH 接続がすぐに利用可能になります
+// 空のままにした場合は、デプロイ後に SCP 等で手動転送が必要です
 param sshPrivateKey = ''
 
 // ============================================================================
