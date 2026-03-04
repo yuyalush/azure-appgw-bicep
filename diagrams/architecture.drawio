@@ -1,0 +1,195 @@
+<mxfile host="65bd71144e">
+    <diagram name="Page-1" id="124894845012928">
+        <mxGraphModel dx="1292" dy="1139" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1123" pageHeight="794" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="124894845013120" value="&lt;i&gt;This is your generated Azure architecture diagram. Resources are organized in groups that can be moved and resized. Drag icons to reposition them — connections will auto-route. Double-click connections to add labels. Layout: infinite canvas.&lt;/i&gt;" style="text;whiteSpace=wrap;rounded=0;fillColor=none;strokeColor=none;dashed=0;html=1;align=left;verticalAlign=middle;fontSize=10;fontColor=#666666;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="10" width="1043" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845014320" value="External" style="swimlane;whiteSpace=wrap;rounded=1;fillColor=#f5f5f5;strokeColor=#0078D4;glass=0;shadow=0;dashed=0;html=1;fillOpacity=50;strokeWidth=2;startSize=30;horizontal=1;fontSize=12;fontStyle=1;fontColor=#0078D4;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="75" width="160" height="159" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845020176" value="[1] Internet" style="image;whiteSpace=wrap;rounded=0;dashed=0;html=1;points=[];align=center;fontSize=11;verticalLabelPosition=bottom;verticalAlign=top;labelBackgroundColor=#ffffff;image=img/lib/azure2/general/Globe.svg;" parent="124894845014320" vertex="1">
+                    <mxGeometry x="25" y="49" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894850228272" value="VNet1: AppGW (10.0.0.0/16)" style="swimlane;whiteSpace=wrap;rounded=1;fillColor=#dae8fc;strokeColor=#0078D4;glass=0;shadow=0;dashed=0;html=1;fillOpacity=50;strokeWidth=2;startSize=30;horizontal=1;fontSize=12;fontStyle=1;fontColor=#0078D4;" parent="1" vertex="1">
+                    <mxGeometry x="230" y="80" width="380" height="265" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845020656" value="[2] pip-appgw-prod&#xa;(Static Standard)" style="image;whiteSpace=wrap;rounded=0;dashed=0;html=1;points=[];align=center;fontSize=11;verticalLabelPosition=bottom;verticalAlign=top;labelBackgroundColor=#ffffff;image=img/lib/azure2/networking/Public_IP_Addresses.svg;" parent="124894850228272" vertex="1">
+                    <mxGeometry x="40" y="140" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845021376" value="[3] appgw-appgw-prod&#xa;(Standard_v2, AutoScale 2-10)" style="image;whiteSpace=wrap;rounded=0;dashed=0;html=1;points=[];align=center;fontSize=11;verticalLabelPosition=bottom;verticalAlign=top;labelBackgroundColor=#ffffff;image=img/lib/azure2/networking/Application_Gateways.svg;" parent="124894850228272" vertex="1">
+                    <mxGeometry x="190" y="170" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845022048" value="[4] nsg-appgw-appgw-prod&#xa;(HTTP/HTTPS/GatewayMgr)" style="image;whiteSpace=wrap;rounded=0;dashed=0;html=1;points=[];align=center;fontSize=11;verticalLabelPosition=bottom;verticalAlign=top;labelBackgroundColor=#ffffff;image=img/lib/azure2/networking/Network_Security_Groups.svg;" parent="124894850228272" vertex="1">
+                    <mxGeometry x="120" y="50" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845022768" value="[5] vnet-appgw-appgw-prod&#xa;(10.0.0.0/16)" style="image;whiteSpace=wrap;rounded=0;dashed=0;html=1;points=[];align=center;fontSize=11;verticalLabelPosition=bottom;verticalAlign=top;labelBackgroundColor=#ffffff;image=img/lib/azure2/networking/Virtual_Networks.svg;" parent="124894850228272" vertex="1">
+                    <mxGeometry x="250" y="50" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845014656" value="VNet2: Backend (10.1.0.0/16)" style="swimlane;whiteSpace=wrap;rounded=1;fillColor=#d5e8d4;strokeColor=#0078D4;glass=0;shadow=0;dashed=0;html=1;fillOpacity=50;strokeWidth=2;startSize=30;horizontal=1;fontSize=12;fontStyle=1;fontColor=#0078D4;" parent="1" vertex="1">
+                    <mxGeometry x="680" y="75" width="380" height="285" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845025648" value="[9] nsg-appgw-vm1-prod&#xa;(HTTP from AppGW / SSH from TestVM)" style="image;whiteSpace=wrap;rounded=0;dashed=0;html=1;points=[];align=center;fontSize=11;verticalLabelPosition=bottom;verticalAlign=top;labelBackgroundColor=#ffffff;image=img/lib/azure2/networking/Network_Security_Groups.svg;" parent="124894845014656" vertex="1">
+                    <mxGeometry x="330" y="40" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845026224" value="[10] vnet-appgw-backend-prod&#xa;(10.1.0.0/16)" style="image;whiteSpace=wrap;rounded=0;dashed=0;html=1;points=[];align=center;fontSize=11;verticalLabelPosition=bottom;verticalAlign=top;labelBackgroundColor=#ffffff;image=img/lib/azure2/networking/Virtual_Networks.svg;" parent="124894845014656" vertex="1">
+                    <mxGeometry x="20" y="40" width="40" height="45" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845024208" value="[7] vm-web1&#xa;(Standard_B2s, nginx)" style="image;whiteSpace=wrap;rounded=0;dashed=0;html=1;points=[];align=center;fontSize=11;verticalLabelPosition=bottom;verticalAlign=top;labelBackgroundColor=#ffffff;image=img/lib/azure2/compute/Virtual_Machine.svg;" parent="124894845014656" vertex="1">
+                    <mxGeometry x="170" y="145" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845024928" value="[8] nic-vm-web1-prod&#xa;(NetworkInterfaces)" style="whiteSpace=wrap;rounded=1;fillColor=#F5F5F5;strokeColor=#CCCCCC;glass=0;shadow=0;dashed=0;html=1;arcSize=8;strokeWidth=1;fontColor=#333333;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" parent="124894845014656" vertex="1">
+                    <mxGeometry x="30" y="185" width="60" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845079808" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;entryX=0.012;entryY=0.504;exitX=0.981;exitY=0.62;endArrow=blockThin;endFill=0;strokeColor=#999999;strokeWidth=1;exitDx=0;exitDy=0;exitPerimeter=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="124894845014656" source="124894845024928" target="124894845024208" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="140" y="216"/>
+                            <mxPoint x="140" y="165"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="124894845019696" value="VNet3: Test/Mgmt (10.2.0.0/16)" style="swimlane;whiteSpace=wrap;rounded=1;fillColor=#fff2cc;strokeColor=#0078D4;glass=0;shadow=0;dashed=0;html=1;fillOpacity=50;strokeWidth=2;startSize=30;horizontal=1;fontSize=12;fontStyle=1;fontColor=#0078D4;" parent="1" vertex="1">
+                    <mxGeometry x="460" y="400" width="380" height="244" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845023488" value="[6] pip-vm-test-prod&#xa;(Static Standard)" style="image;whiteSpace=wrap;rounded=0;dashed=0;html=1;points=[];align=center;fontSize=11;verticalLabelPosition=bottom;verticalAlign=top;labelBackgroundColor=#ffffff;image=img/lib/azure2/networking/Public_IP_Addresses.svg;" parent="124894845019696" vertex="1">
+                    <mxGeometry x="20" y="90" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845076256" value="[11] vm-test&#xa;(Standard_B2s, tools)" style="image;whiteSpace=wrap;rounded=0;dashed=0;html=1;points=[];align=center;fontSize=11;verticalLabelPosition=bottom;verticalAlign=top;labelBackgroundColor=#ffffff;image=img/lib/azure2/compute/Virtual_Machine.svg;" parent="124894845019696" vertex="1">
+                    <mxGeometry x="220" y="190" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845076832" value="[12] nic-vm-test-prod&#xa;(NetworkInterfaces)" style="whiteSpace=wrap;rounded=1;fillColor=#F5F5F5;strokeColor=#CCCCCC;glass=0;shadow=0;dashed=0;html=1;arcSize=8;strokeWidth=1;fontColor=#333333;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" parent="124894845019696" vertex="1">
+                    <mxGeometry x="230" y="110" width="60" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845077552" value="[13] nsg-appgw-test-prod&#xa;(JIT managed)" style="image;whiteSpace=wrap;rounded=0;dashed=0;html=1;points=[];align=center;fontSize=11;verticalLabelPosition=bottom;verticalAlign=top;labelBackgroundColor=#ffffff;image=img/lib/azure2/networking/Network_Security_Groups.svg;" parent="124894845019696" vertex="1">
+                    <mxGeometry x="310" y="40" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845078272" value="[14] vnet-appgw-test-prod&#xa;(10.2.0.0/16)" style="image;whiteSpace=wrap;rounded=0;dashed=0;html=1;points=[];align=center;fontSize=11;verticalLabelPosition=bottom;verticalAlign=top;labelBackgroundColor=#ffffff;image=img/lib/azure2/networking/Virtual_Networks.svg;" parent="124894845019696" vertex="1">
+                    <mxGeometry x="120" y="90" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845080384" value="snet-test (10.2.1.0/24)" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;entryX=0.5;entryY=0;exitX=0.096;exitY=0.567;endArrow=blockThin;endFill=0;strokeColor=#999999;strokeWidth=1;exitDx=0;exitDy=0;exitPerimeter=0;" parent="124894845019696" source="124894845077552" target="124894845078272" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894850228275" value="" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;entryX=0;entryY=0.5;exitX=1;exitY=0.5;endArrow=blockThin;endFill=0;strokeColor=#999999;strokeWidth=1;" edge="1" parent="124894845019696" source="124894845023488" target="124894845078272">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="65" y="69" as="sourcePoint"/>
+                        <mxPoint x="230" y="135" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="124894845080096" value="Public IP" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;entryX=0;entryY=0.5;exitX=1;exitY=0.5;endArrow=blockThin;endFill=0;strokeColor=#999999;strokeWidth=1;" parent="124894845019696" source="124894845078272" target="124894845076832" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845078944" value="HTTP/HTTPS" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;entryX=0;entryY=0.5;exitX=1;exitY=0.5;endArrow=blockThin;endFill=0;strokeColor=#999999;strokeWidth=1;" parent="1" source="124894845020176" target="124894845020656" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="250" y="144"/>
+                            <mxPoint x="250" y="240"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="124894847031040" value="Frontend IP" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;entryX=-0.008;entryY=0.546;exitX=1.013;exitY=0.613;endArrow=blockThin;endFill=0;strokeColor=#999999;strokeWidth=1;entryDx=0;entryDy=0;entryPerimeter=0;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="124894845020656" target="124894845021376" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="340" y="245"/>
+                            <mxPoint x="340" y="232"/>
+                            <mxPoint x="420" y="232"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="124894845078848" value="snet-appgw (10.0.1.0/24)" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;entryX=0;entryY=0.5;exitX=1;exitY=0.5;endArrow=blockThin;endFill=0;strokeColor=#999999;strokeWidth=1;" parent="1" source="124894845022048" target="124894845022768" edge="1">
+                    <mxGeometry x="-0.1111" y="30" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="124894845079664" value="HTTP :80 (backend pool)" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;entryX=0;entryY=0.5;exitX=0.971;exitY=0.546;endArrow=blockThin;endFill=0;strokeColor=#999999;strokeWidth=1;entryDx=0;entryDy=0;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="124894845021376" target="124894845024928" edge="1">
+                    <mxGeometry x="0.1831" y="15" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="124894845079952" value="snet-vm1 (10.1.1.0/24)" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;entryX=1;entryY=0.2;exitX=0;exitY=0.5;endArrow=blockThin;endFill=0;strokeColor=#999999;strokeWidth=1;" parent="1" source="124894845025648" target="124894845026224" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845080240" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;entryX=0.471;entryY=-0.037;exitX=0.5;exitY=1;endArrow=blockThin;endFill=0;strokeColor=#999999;strokeWidth=1;entryDx=0;entryDy=0;entryPerimeter=0;exitDx=0;exitDy=0;" parent="1" source="124894845076832" target="124894845076256" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="720" y="570"/>
+                            <mxPoint x="699" y="570"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="124894845080528" value="VNet Peering" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;entryX=0.054;entryY=0.522;exitX=0.971;exitY=0.504;endArrow=blockThin;endFill=0;strokeColor=#999999;strokeWidth=1;exitDx=0;exitDy=0;exitPerimeter=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="124894845022768" target="124894845026224" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="540" y="150"/>
+                            <mxPoint x="540" y="139"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="124894845080672" value="VNet Peering" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;endArrow=blockThin;endFill=0;strokeColor=#999999;strokeWidth=1;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="700" y="140" as="sourcePoint"/>
+                        <mxPoint x="630" y="570" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="700" y="141"/>
+                            <mxPoint x="640" y="141"/>
+                            <mxPoint x="640" y="570"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="124894845080816" value="SSH :22 (踏み台)" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;rounded=1;jettySize=auto;entryX=1;entryY=0.8;exitX=1.033;exitY=0.483;endArrow=blockThin;endFill=0;strokeColor=#999999;strokeWidth=1;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="124894845076256" target="124894845024208" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845013888" value="📋 Architecture Legend" style="whiteSpace=wrap;rounded=1;fillColor=#0078D4;strokeColor=#005a9e;dashed=0;html=1;fontColor=#ffffff;fontStyle=1;fontSize=14;align=center;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="210" y="700" width="790" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845081200" value="&lt;table style=&#39;width:100%;border-collapse:collapse;&#39;&gt;&lt;tr style=&#39;font-weight:bold;&#39;&gt;&lt;td style=&#39;width:35px;padding:4px;&#39;&gt;#&lt;/td&gt;&lt;td style=&#39;width:180px;padding:4px;&#39;&gt;Name&lt;/td&gt;&lt;td style=&#39;width:160px;padding:4px;&#39;&gt;Type&lt;/td&gt;&lt;td style=&#39;width:300px;padding:4px;&#39;&gt;Rationale&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="text;whiteSpace=wrap;rounded=0;fillColor=#E6F3FF;strokeColor=#0078D4;dashed=0;align=left;verticalAlign=middle;overflow=hidden;html=1;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="210" y="730" width="790" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845081776" value="&lt;table style=&#39;width:100%;border-collapse:collapse;&#39;&gt;&lt;tr&gt;&lt;td style=&#39;width:35px;padding:4px;font-weight:bold;color:#0078D4;&#39;&gt;1&lt;/td&gt;&lt;td style=&#39;width:180px;padding:4px;&#39;&gt;Internet&lt;/td&gt;&lt;td style=&#39;width:160px;padding:4px;color:#666;&#39;&gt;Globe&lt;/td&gt;&lt;td style=&#39;width:300px;padding:4px;&#39;&gt;外部ユーザーからの HTTP/HTTPS トラフィック入口&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="text;whiteSpace=wrap;rounded=0;fillColor=#ffffff;strokeColor=#0078D4;dashed=0;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=10;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;html=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="210" y="754" width="790" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845082448" value="&lt;table style=&#39;width:100%;border-collapse:collapse;&#39;&gt;&lt;tr&gt;&lt;td style=&#39;width:35px;padding:4px;font-weight:bold;color:#0078D4;&#39;&gt;2&lt;/td&gt;&lt;td style=&#39;width:180px;padding:4px;&#39;&gt;pip-appgw-prod&#xa;(Static Standard)&lt;/td&gt;&lt;td style=&#39;width:160px;padding:4px;color:#666;&#39;&gt;Public IP Addresses&lt;/td&gt;&lt;td style=&#39;width:300px;padding:4px;&#39;&gt;Application Gateway 用パブリック IP (Static)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="text;whiteSpace=wrap;rounded=0;fillColor=#F0F8FF;strokeColor=#0078D4;dashed=0;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=10;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;html=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="210" y="778" width="790" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845083072" value="&lt;table style=&#39;width:100%;border-collapse:collapse;&#39;&gt;&lt;tr&gt;&lt;td style=&#39;width:35px;padding:4px;font-weight:bold;color:#0078D4;&#39;&gt;3&lt;/td&gt;&lt;td style=&#39;width:180px;padding:4px;&#39;&gt;appgw-appgw-prod&#xa;(Standard_v2, AutoScale 2-10)&lt;/td&gt;&lt;td style=&#39;width:160px;padding:4px;color:#666;&#39;&gt;Application Gateways&lt;/td&gt;&lt;td style=&#39;width:300px;padding:4px;&#39;&gt;L7 ロードバランサー。HTTP ポート 80 でリッスン、Backend VM へルーティング&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="text;whiteSpace=wrap;rounded=0;fillColor=#ffffff;strokeColor=#0078D4;dashed=0;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=10;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;html=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="210" y="820" width="790" height="38" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845083696" value="&lt;table style=&#39;width:100%;border-collapse:collapse;&#39;&gt;&lt;tr&gt;&lt;td style=&#39;width:35px;padding:4px;font-weight:bold;color:#0078D4;&#39;&gt;4&lt;/td&gt;&lt;td style=&#39;width:180px;padding:4px;&#39;&gt;nsg-appgw-appgw-prod&#xa;(HTTP/HTTPS/GatewayMgr)&lt;/td&gt;&lt;td style=&#39;width:160px;padding:4px;color:#666;&#39;&gt;Network Security Groups&lt;/td&gt;&lt;td style=&#39;width:300px;padding:4px;&#39;&gt;AppGW サブネット用 NSG。Internet からの 80/443 と GatewayManager 65200-65535 を許可&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="text;whiteSpace=wrap;rounded=0;fillColor=#F0F8FF;strokeColor=#0078D4;dashed=0;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=10;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;html=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="210" y="858" width="790" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845084320" value="&lt;table style=&#39;width:100%;border-collapse:collapse;&#39;&gt;&lt;tr&gt;&lt;td style=&#39;width:35px;padding:4px;font-weight:bold;color:#0078D4;&#39;&gt;5&lt;/td&gt;&lt;td style=&#39;width:180px;padding:4px;&#39;&gt;vnet-appgw-appgw-prod&#xa;(10.0.0.0/16)&lt;/td&gt;&lt;td style=&#39;width:160px;padding:4px;color:#666;&#39;&gt;Virtual Networks&lt;/td&gt;&lt;td style=&#39;width:300px;padding:4px;&#39;&gt;Application Gateway 専用 VNet&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="text;whiteSpace=wrap;rounded=0;fillColor=#ffffff;strokeColor=#0078D4;dashed=0;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=10;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;html=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="210" y="898" width="790" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845084848" value="&lt;table style=&#39;width:100%;border-collapse:collapse;&#39;&gt;&lt;tr&gt;&lt;td style=&#39;width:35px;padding:4px;font-weight:bold;color:#0078D4;&#39;&gt;6&lt;/td&gt;&lt;td style=&#39;width:180px;padding:4px;&#39;&gt;pip-vm-test-prod&#xa;(Static Standard)&lt;/td&gt;&lt;td style=&#39;width:160px;padding:4px;color:#666;&#39;&gt;Public IP Addresses&lt;/td&gt;&lt;td style=&#39;width:300px;padding:4px;&#39;&gt;Test VM 用パブリック IP (管理用)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="text;whiteSpace=wrap;rounded=0;fillColor=#F0F8FF;strokeColor=#0078D4;dashed=0;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=10;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;html=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="210" y="940" width="790" height="38" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845085472" value="&lt;table style=&#39;width:100%;border-collapse:collapse;&#39;&gt;&lt;tr&gt;&lt;td style=&#39;width:35px;padding:4px;font-weight:bold;color:#0078D4;&#39;&gt;7&lt;/td&gt;&lt;td style=&#39;width:180px;padding:4px;&#39;&gt;vm-web1&#xa;(Standard_B2s, nginx)&lt;/td&gt;&lt;td style=&#39;width:160px;padding:4px;color:#666;&#39;&gt;Virtual Machine&lt;/td&gt;&lt;td style=&#39;width:300px;padding:4px;&#39;&gt;Backend Web サーバー。nginx を cloud-init でプロビジョニング。パブリック IP なし&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="text;whiteSpace=wrap;rounded=0;fillColor=#ffffff;strokeColor=#0078D4;dashed=0;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=10;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;html=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="210" y="978" width="790" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845086096" value="&lt;table style=&#39;width:100%;border-collapse:collapse;&#39;&gt;&lt;tr&gt;&lt;td style=&#39;width:35px;padding:4px;font-weight:bold;color:#0078D4;&#39;&gt;8&lt;/td&gt;&lt;td style=&#39;width:180px;padding:4px;&#39;&gt;nic-vm-web1-prod&lt;/td&gt;&lt;td style=&#39;width:160px;padding:4px;color:#666;&#39;&gt;NetworkInterfaces&lt;/td&gt;&lt;td style=&#39;width:300px;padding:4px;&#39;&gt;vm-web1 の NIC。プライベート IP のみ (Dynamic)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="text;whiteSpace=wrap;rounded=0;fillColor=#F0F8FF;strokeColor=#0078D4;dashed=0;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=10;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;html=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="210" y="1020" width="790" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845086672" value="&lt;table style=&#39;width:100%;border-collapse:collapse;&#39;&gt;&lt;tr&gt;&lt;td style=&#39;width:35px;padding:4px;font-weight:bold;color:#0078D4;&#39;&gt;9&lt;/td&gt;&lt;td style=&#39;width:180px;padding:4px;&#39;&gt;nsg-appgw-vm1-prod&#xa;(HTTP from AppGW / SSH from TestVM)&lt;/td&gt;&lt;td style=&#39;width:160px;padding:4px;color:#666;&#39;&gt;Network Security Groups&lt;/td&gt;&lt;td style=&#39;width:300px;padding:4px;&#39;&gt;Backend VM サブネット用 NSG。VNet1 からの HTTP と VNet3 からの SSH を許可&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="text;whiteSpace=wrap;rounded=0;fillColor=#ffffff;strokeColor=#0078D4;dashed=0;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=10;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;html=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="210" y="1044" width="790" height="46" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845087296" value="&lt;table style=&#39;width:100%;border-collapse:collapse;&#39;&gt;&lt;tr&gt;&lt;td style=&#39;width:35px;padding:4px;font-weight:bold;color:#0078D4;&#39;&gt;10&lt;/td&gt;&lt;td style=&#39;width:180px;padding:4px;&#39;&gt;vnet-appgw-backend-prod&#xa;(10.1.0.0/16)&lt;/td&gt;&lt;td style=&#39;width:160px;padding:4px;color:#666;&#39;&gt;Virtual Networks&lt;/td&gt;&lt;td style=&#39;width:300px;padding:4px;&#39;&gt;Backend VM 用 VNet&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="text;whiteSpace=wrap;rounded=0;fillColor=#F0F8FF;strokeColor=#0078D4;dashed=0;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=10;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;html=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="210" y="1090" width="790" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845022816" value="&lt;table style=&#39;width:100%;border-collapse:collapse;&#39;&gt;&lt;tr&gt;&lt;td style=&#39;width:35px;padding:4px;font-weight:bold;color:#0078D4;&#39;&gt;11&lt;/td&gt;&lt;td style=&#39;width:180px;padding:4px;&#39;&gt;vm-test&#xa;(Standard_B2s, tools)&lt;/td&gt;&lt;td style=&#39;width:160px;padding:4px;color:#666;&#39;&gt;Virtual Machine&lt;/td&gt;&lt;td style=&#39;width:300px;padding:4px;&#39;&gt;テスト・管理用 VM。cloud-init でツールをインストール。SSH 踏み台として機能&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="text;whiteSpace=wrap;rounded=0;fillColor=#ffffff;strokeColor=#0078D4;dashed=0;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=10;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;html=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="210" y="1130" width="790" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845088496" value="&lt;table style=&#39;width:100%;border-collapse:collapse;&#39;&gt;&lt;tr&gt;&lt;td style=&#39;width:35px;padding:4px;font-weight:bold;color:#0078D4;&#39;&gt;12&lt;/td&gt;&lt;td style=&#39;width:180px;padding:4px;&#39;&gt;nic-vm-test-prod&lt;/td&gt;&lt;td style=&#39;width:160px;padding:4px;color:#666;&#39;&gt;NetworkInterfaces&lt;/td&gt;&lt;td style=&#39;width:300px;padding:4px;&#39;&gt;vm-test の NIC。パブリック IP あり&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="text;whiteSpace=wrap;rounded=0;fillColor=#F0F8FF;strokeColor=#0078D4;dashed=0;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=10;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;html=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="210" y="1172" width="790" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845089120" value="&lt;table style=&#39;width:100%;border-collapse:collapse;&#39;&gt;&lt;tr&gt;&lt;td style=&#39;width:35px;padding:4px;font-weight:bold;color:#0078D4;&#39;&gt;13&lt;/td&gt;&lt;td style=&#39;width:180px;padding:4px;&#39;&gt;nsg-appgw-test-prod&#xa;(JIT managed)&lt;/td&gt;&lt;td style=&#39;width:160px;padding:4px;color:#666;&#39;&gt;Network Security Groups&lt;/td&gt;&lt;td style=&#39;width:300px;padding:4px;&#39;&gt;Test VM サブネット用 NSG。JIT により SSH ルールが動的に追加される&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="text;whiteSpace=wrap;rounded=0;fillColor=#ffffff;strokeColor=#0078D4;dashed=0;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=10;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;html=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="210" y="1208" width="790" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="124894845089744" value="&lt;table style=&#39;width:100%;border-collapse:collapse;&#39;&gt;&lt;tr&gt;&lt;td style=&#39;width:35px;padding:4px;font-weight:bold;color:#0078D4;&#39;&gt;14&lt;/td&gt;&lt;td style=&#39;width:180px;padding:4px;&#39;&gt;vnet-appgw-test-prod&#xa;(10.2.0.0/16)&lt;/td&gt;&lt;td style=&#39;width:160px;padding:4px;color:#666;&#39;&gt;Virtual Networks&lt;/td&gt;&lt;td style=&#39;width:300px;padding:4px;&#39;&gt;テスト・管理用 VNet&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="text;whiteSpace=wrap;rounded=0;fillColor=#F0F8FF;strokeColor=#0078D4;dashed=0;align=left;verticalAlign=middle;spacingLeft=10;spacingRight=10;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;html=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="210" y="1248" width="790" height="40" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
